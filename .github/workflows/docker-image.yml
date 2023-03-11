@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag onlyoffice-documentserver:latest
+    - name: Upload Qingyun
+      env:
+        qinglogin: ${{ secrets.QINGLOGIN }}
+        qingpassword: ${{ secrets.QINGPASSWORD }}
+        qingdockername: dockerhub.qingcloud.com/dailybo/onlyoffice-documentserver
+      run:  |
+        docker login -u $qinglogin -p $qingpassword dockerhub.qingcloud.com
+        docker tag onlyoffice-documentserver:latest $qingdockername:$GITHUB_RUN_ID
+        docker tag onlyoffice-documentserver:latest $qingdockername:latest
+        docker push $qingdockername:$GITHUB_RUN_ID
+        docker push $qingdockername:latest
