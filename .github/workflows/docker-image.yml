@@ -13,14 +13,14 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag onlyoffice-documentserver:latest
-    - name: Upload Qingyun
+    - name: upload tencent cloud
       env:
-        qinglogin: ${{ secrets.QINGLOGIN }}
-        qingpassword: ${{ secrets.QINGPASSWORD }}
-        qingdockername: dockerhub.qingcloud.com/dailybo/onlyoffice-documentserver
+        tencentlogin: ${{ secrets.TENCENTCLOUDLOGIN }}
+        tencentpassword: ${{ secrets.TENCENTCLOUDPASSWORD }}
+        tencentdockername: ccr.ccs.tencentyun.com/dailybo/onlyoffice-documentserver
       run:  |
-        docker login -u $qinglogin -p $qingpassword dockerhub.qingcloud.com
-        docker tag onlyoffice-documentserver:latest $qingdockername:$GITHUB_RUN_ID
-        docker tag onlyoffice-documentserver:latest $qingdockername:latest
-        docker push $qingdockername:$GITHUB_RUN_ID
-        docker push $qingdockername:latest
+        docker login -u $tencentlogin -p $tencentpassword ccr.ccs.tencentyun.com
+        docker tag onlyoffice-documentserver:latest $tencentdockername:$GITHUB_RUN_ID
+        docker tag onlyoffice-documentserver:latest $tencentdockername:latest
+        docker push $tencentdockername:$GITHUB_RUN_ID
+        docker push $tencentdockername:latest
