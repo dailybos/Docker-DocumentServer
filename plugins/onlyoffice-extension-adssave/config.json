@@ -1,0 +1,42 @@
+{
+    "name": "ADS签入",
+    "guid": "asc.{DA4CB95F-3ACB-4993-A396-66216D96BB6C}",
+    "baseUrl": "",
+    "variations": [
+        {
+            "description": "ADSSave",
+            "url": "index.html",
+            "icons": [
+                "resources/img/icon.png",
+                "resources/img/icon@2x.png"
+            ],
+            "isViewer": false,
+            "EditorsSupport": [
+                "word",
+                "cell",
+                "slide"
+            ],
+            "isVisual": true,
+            "isModal": true,
+            "isInsideMode": false,
+            "isDisplayedInViewer": false,
+            "initDataType": "",
+            "initData": "",
+            "isUpdateOleOnResize": false,
+            "buttons": [
+                {
+                    "text": "提交",
+                    "primary": true
+                },
+                {
+                    "text": "取消",
+                    "primary": false
+                }
+            ],
+            "size": [
+                360,
+                130
+            ]
+        }
+    ]
+}

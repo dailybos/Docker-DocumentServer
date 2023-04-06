@@ -1,7 +1,7 @@
 version: '2'
 services:
   onlyoffice-documentserver:
-    image: ccr.ccs.tencentyun.com/dailybo/onlyoffice-documentserver:192
+    image: ccr.ccs.tencentyun.com/dailybo/onlyoffice-documentserver
     container_name: onlyoffice-documentserver
     depends_on:
       - onlyoffice-postgresql

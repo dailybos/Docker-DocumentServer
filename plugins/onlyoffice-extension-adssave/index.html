@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>签入</title>
+    <script type="text/javascript" src="scripts/sdkjs-plugins/v1/plugins.js"></script>
+    <script type="text/javascript" src="scripts/sdkjs-plugins/v1/plugins-ui.js"></script>
+    <link rel="stylesheet" href="scripts/sdkjs-plugins/v1/plugins.css">
+    <script type="text/javascript" src="scripts/adssave.js"></script>
+    <style>
+        .input_error {
+            display: none;
+            float: left;
+            position: relative;
+        }
+
+        .input_error:before {
+            content: '';
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAYdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuNWWFMmUAAACvSURBVDhPrZNRDoIwEER7COA6HgJPpAnHM4oXQdFE/VDfNrsfpQvGhkneT2dmky40rK77pq6ggx4eyhF2UGnMF4EWBvjMcIFW46nEgLcGl5BMOoSDGmR6EjZNz0GyjdbjALlfFjR5HnRajwNkSVnI5HnQaz0OkE1nIZPnwVPrxQNGrc9f4Qcnra+zxAbKP6OIg/IfyYSxhasGPcTzyyYC9pjO8IIbHGAPy4/pf4XwBSVejZ5wzd0zAAAAAElFTkSuQmCC);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="adssave" style="margin: 0; padding: 0;">
+        <div id="td_labelUrl" style="position:absolute;left:15px;top:15px;right:15px;height:20px;margin:0;padding:0;"
+            class="defaultlable">注释</div>
+        <div style="position:absolute;left:15px;top:35px;right:15px;height:40px;margin:0;padding:0;">
+            <textarea rows="5" id="commit_info" style="left:0px;top:0px;width:100%; resize: none;"></textarea>
+            <div id="input_error_id" class="input_error"
+                style="position:absolute; top:0px; right:0px; width: 0px; height: 16px; display: none;"></div>
+        </div>
+    </div>
+</body>
+
+</html>

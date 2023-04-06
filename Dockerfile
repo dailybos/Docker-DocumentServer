@@ -65,6 +65,13 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     service supervisor stop && \
     service nginx stop && \
     rm -rf /var/lib/apt/lists/*
+#add plugin
+RUN rm -rf /var/www/onlyoffice/documentserver/sdkjs-plugins/youtube \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/zotero \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/mendeley \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/thesaurus \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/translator
+COPY plugins /var/www/onlyoffice/documentserver/sdkjs-plugins/
 
 COPY config /app/ds/setup/config/
 COPY run-document-server.sh /app/ds/run-document-server.sh
