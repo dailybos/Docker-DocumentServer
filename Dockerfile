@@ -65,13 +65,6 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
     service supervisor stop && \
     service nginx stop && \
     rm -rf /var/lib/apt/lists/*
-#add plugin
-RUN rm -rf /var/www/onlyoffice/documentserver/sdkjs-plugins/youtube \
-    /var/www/onlyoffice/documentserver/sdkjs-plugins/zotero \
-    /var/www/onlyoffice/documentserver/sdkjs-plugins/mendeley \
-    /var/www/onlyoffice/documentserver/sdkjs-plugins/thesaurus \
-    /var/www/onlyoffice/documentserver/sdkjs-plugins/translator
-COPY plugins /var/www/onlyoffice/documentserver/sdkjs-plugins/
 
 COPY config /app/ds/setup/config/
 COPY run-document-server.sh /app/ds/run-document-server.sh
@@ -103,5 +96,11 @@ RUN PACKAGE_FILE="${COMPANY_NAME}-${PRODUCT_NAME}${PRODUCT_EDITION}${PACKAGE_VER
     rm -rf /var/lib/apt/lists/*
 
 VOLUME /var/log/$COMPANY_NAME /var/lib/$COMPANY_NAME /var/www/$COMPANY_NAME/Data /var/lib/postgresql /var/lib/rabbitmq /var/lib/redis /usr/share/fonts/truetype/custom
-
+#add plugin
+RUN rm -rf /var/www/onlyoffice/documentserver/sdkjs-plugins/youtube \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/zotero \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/mendeley \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/thesaurus \
+    /var/www/onlyoffice/documentserver/sdkjs-plugins/translator
+COPY plugins /var/www/onlyoffice/documentserver/sdkjs-plugins/
 ENTRYPOINT ["/app/ds/run-document-server.sh"]
