@@ -1,4 +1,4 @@
-version: '2'
+version: "3"
 services:
   onlyoffice-documentserver:
     image: ccr.ccs.tencentyun.com/dailybo/onlyoffice-documentserver
@@ -20,7 +20,7 @@ services:
       #- JWT_IN_BODY=true
     ports:
       - '9080:80'
-      - '9430:443'
+      # - '9430:443'
     stdin_open: true
     restart: always
     stop_grace_period: 60s
@@ -51,5 +51,38 @@ services:
     volumes:
       - postgresql_data:/var/lib/postgresql
 
+  anyoffice-service:
+    image: ccr.ccs.tencentyun.com/dailybo/anyoffice
+    container_name: anyoffice-service
+    restart: always
+    environment:
+      - SEQSERVERURL=http://seq
+      - ADS_COLLECTIONS_URL=
+      - ADS_USER=
+      - ADS_PWD=
+      # - ADS_DOMAIN=
+    ports:
+      - '9081:80'
+    depends_on:
+      - seq
+
+  #seq用户名和密码
+  #admin 123456
+  seq:
+    image: ccr.ccs.tencentyun.com/dailybo/seq
+    container_name: seq
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      SEQ_RETENTION_DAYS: 30
+      # (echo '<password>' | docker run --rm -i datalust/seq config hash) 生成密码
+      SEQ_FIRSTRUN_ADMINPASSWORDHASH: "FJjefyvN/zs3VR4MTrpIqjqYEgAj4AZZ54WfhwCbyu/S20WzCg==" # ensure proper password hashing for security
+    volumes:
+      - seq_data:/data
+    ports:
+      - "5341:80"
+
+
 volumes:
   postgresql_data:
+  seq_data:
